@@ -24,7 +24,7 @@ const UpdatePassword = () => {
 
     try {
       const response = await axios({
-        url: "http://localhost:4000/update-password",
+        url: "https://blog-backend-vq9g.onrender.com//update-password",
         method: "patch",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -42,12 +42,11 @@ const UpdatePassword = () => {
           newPassword: "",
         });
 
-   
-        localStorage.removeItem("token")
+        localStorage.removeItem("token");
         navigate("/logout");
       } else {
         // Handle the case where the update failed
-    
+
         // Optionally, display an error message to the user
         alert(response.data.message);
       }

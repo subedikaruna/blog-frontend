@@ -2,10 +2,9 @@ import axios from "axios";
 import { useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css'; // Import the toastify styles
+import "react-toastify/dist/ReactToastify.css"; // Import the toastify styles
 
 const ForgotPassword = () => {
-
   const [email, setEmail] = useState("");
   const navigate = useNavigate(); // Initialize the navigate function
 
@@ -15,9 +14,9 @@ const ForgotPassword = () => {
 
     try {
       const response = await axios({
-        url: "http://localhost:4000/forgot-password",
+        url: "https://blog-backend-vq9g.onrender.com//forgot-password",
         method: "post",
-       
+
         data,
       });
 
@@ -34,7 +33,10 @@ const ForgotPassword = () => {
       <ToastContainer /> {/* Ensure ToastContainer is rendered here */}
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
-          <label htmlFor="email" className="block text-gray-700 mb-2 font-medium">
+          <label
+            htmlFor="email"
+            className="block text-gray-700 mb-2 font-medium"
+          >
             Email
           </label>
           <input

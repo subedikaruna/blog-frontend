@@ -14,7 +14,7 @@ const SingleBlog = () => {
   const fetchBlog = async () => {
     if (id) {
       const response = await axios.get(
-        `http://localhost:4000/blog/${id}`,
+        `https://blog-backend-vq9g.onrender.com//blog/${id}`,
         blog, // Send the updated blog data
         {
           headers: {
@@ -32,7 +32,9 @@ const SingleBlog = () => {
   };
 
   const deleteBlog = async () => {
-    const response = await axios.delete(`http://localhost:4000/blog/${id}`);
+    const response = await axios.delete(
+      `https://blog-backend-vq9g.onrender.com//blog/${id}`
+    );
 
     if (response.status === 200) {
       navigate("/");

@@ -18,7 +18,7 @@ const UpdateProfile = () => {
     // Call the API to update the profile
     try {
       const response = await axios({
-        url: "http://localhost:4000/my-profile", // Assuming this is your update endpoint
+        url: "https://blog-backend-vq9g.onrender.com//my-profile", // Assuming this is your update endpoint
         method: "patch",
         data: data, // Send user data to the API
         headers: {
@@ -36,12 +36,11 @@ const UpdateProfile = () => {
   const fetchProfile = async () => {
     try {
       const response = await axios({
-        url: "http://localhost:4000/my-profile", // Profile endpoint
+        url: "https://blog-backend-vq9g.onrender.com//my-profile", // Profile endpoint
         method: "get",
         headers: {
           Authorization: `Bearer ${token}`,
         },
-        
       });
       const data = response.data.data;
       setUser({

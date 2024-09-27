@@ -7,7 +7,10 @@ import { toast, ToastContainer } from "react-toastify";
 const Register = () => {
   const handleRegister = async (data, resetForm) => {
     try {
-      const response = await axios.post("http://localhost:4000/register", data);
+      const response = await axios.post(
+        "https://blog-backend-vq9g.onrender.com//register",
+        data
+      );
       if (response.status >= 200 && response.status < 300) {
         toast.success("email has been sent to your account"); // Success notification
         resetForm(); // Call this function to reset the form fields

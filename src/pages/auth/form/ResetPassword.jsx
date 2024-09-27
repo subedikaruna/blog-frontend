@@ -5,7 +5,7 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 const ResetPassword = () => {
   let navigate = useNavigate();
   let [query] = useSearchParams();
-  let [password, setPassword] = useState("");  // Remove async from the component
+  let [password, setPassword] = useState(""); // Remove async from the component
   let token = query.get("token");
 
   const handleSubmit = async (e) => {
@@ -15,11 +15,11 @@ const ResetPassword = () => {
     };
     try {
       let response = await axios({
-        url: "http://localhost:4000/reset-password",
+        url: "https://blog-backend-vq9g.onrender.com//reset-password",
         method: "PATCH",
         data: data,
         headers: {
-          "Authorization": `Bearer ${token}`,
+          Authorization: `Bearer ${token}`,
         },
       });
       localStorage.removeItem("token");
@@ -36,15 +36,15 @@ const ResetPassword = () => {
           htmlFor="password"
           className="block text-gray-700 mb-2 font-medium"
         >
-         Password
+          Password
         </label>
         <input
-          type="password"  // Consider using 'password' instead of 'text' for better security
+          type="password" // Consider using 'password' instead of 'text' for better security
           id="password"
           name="password"
           className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500 focus:ring focus:ring-indigo-200"
           placeholder="Enter your new password"
-          onChange={(e) => setPassword(e.target.value)}  // Corrected onChange
+          onChange={(e) => setPassword(e.target.value)} // Corrected onChange
           value={password}
           required
         />

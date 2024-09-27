@@ -16,7 +16,7 @@ const MyProfile = () => {
   const fetchProfile = async () => {
     try {
       const response = await axios({
-        url: "http://localhost:4000/my-profile",
+        url: "https://blog-backend-vq9g.onrender.com//my-profile",
         method: "get",
         headers: {
           Authorization: `Bearer ${token}`,

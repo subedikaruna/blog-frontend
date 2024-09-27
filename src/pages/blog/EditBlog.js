@@ -7,7 +7,7 @@ import { ToastContainer, toast } from "react-toastify";
 const EditBlog = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  
+
   // Redirect if no token is found
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -16,7 +16,7 @@ const EditBlog = () => {
       navigate("/login");
     }
   }, []);
-  
+
   // Initialize blog state
   const [blog, setBlog] = useState({
     title: "",
@@ -28,7 +28,9 @@ const EditBlog = () => {
   const fetchBlog = async () => {
     try {
       if (id) {
-        const response = await axios.get(`http://localhost:4000/blog/${id}`);
+        const response = await axios.get(
+          `https://blog-backend-vq9g.onrender.com//blog/${id}`
+        );
         if (response.status === 200) {
           setBlog(response.data.data);
         } else {
@@ -48,7 +50,7 @@ const EditBlog = () => {
     try {
       if (id) {
         const response = await axios.patch(
-          `http://localhost:4000/blog/${id}`,
+          `https://blog-backend-vq9g.onrender.com//blog/${id}`,
           blog, // Send the updated blog data
           {
             headers: {

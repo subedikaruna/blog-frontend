@@ -28,7 +28,7 @@ const Form = ({ type }) => {
 
     try {
       const response = await axios({
-        url: "http://localhost:4000/blog",
+        url: "https://blog-backend-vq9g.onrender.com/blog",
         method: "POST",
         data: data,
         headers: {

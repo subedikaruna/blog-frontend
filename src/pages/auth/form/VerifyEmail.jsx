@@ -3,32 +3,23 @@ import React, { useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
 const VerifyEmail = () => {
-  let [query]=useSearchParams()
-  let token=query.get("token")
-  let navigate=useNavigate() 
+  let [query] = useSearchParams();
+  let token = query.get("token");
+  let navigate = useNavigate();
   let emailVerify = async () => {
-  
-try {
-  let result = await axios({
-    url:"http://localhost:4000/verify-email",
-    method:"PATCH",
-    headers:{
-      "Authorization":`Bearer ${token}`
-    }
-    })
-    navigate("/login")
-  }
-  
- 
- catch (error) {
-
-}
-  }
-  
-
+    try {
+      let result = await axios({
+        url: "https://blog-backend-vq9g.onrender.com//verify-email",
+        method: "PATCH",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      navigate("/login");
+    } catch (error) {}
+  };
 
   //  try {
-  
 
   // }
   //  } catch (error) {
