@@ -29,7 +29,7 @@ const EditBlog = () => {
     try {
       if (id) {
         const response = await axios.get(
-          `https://blog-backend-vq9g.onrender.com//blog/${id}`
+          `https://blog-backend-vq9g.onrender.com/blog/${id}`
         );
         if (response.status === 200) {
           setBlog(response.data.data);
@@ -50,7 +50,7 @@ const EditBlog = () => {
     try {
       if (id) {
         const response = await axios.patch(
-          `https://blog-backend-vq9g.onrender.com//blog/${id}`,
+          `https://blog-backend-vq9g.onrender.com/blog/${id}`,
           blog, // Send the updated blog data
           {
             headers: {
