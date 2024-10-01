@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Form = ({ type, onSubmit }) => {
-  let navigate=useNavigate()
+  let navigate = useNavigate();
   const [data, setData] = useState({
     email: "",
     name: "",
@@ -103,26 +103,28 @@ const Form = ({ type, onSubmit }) => {
               {type}
             </button>
           </div>
-
         </form>
 
         {type === "Login" && (
-          <div>
-          <div  onClick={()=>{
-            navigate("/forgot-password")
-          }} className="text-indigo-500 hover:underline">
-             Forgot-password?
+          <>
+            <div
+              className="text-center text-gray-600"
+              onClick={() => {
+                navigate("/forgot-password");
+              }}
+            >
+              Forgot-password?
             </div>
-          <p className="text-center text-gray-600">
-            Don't have an account?{" "}
-            <a href="/register" className="text-indigo-500 hover:underline">
-              Sign up
-            </a>
-          </p>
-          </div>
+            <p className="text-center text-gray-600">
+              Don't have an account?{" "}
+              <a href="/register" className="text-indigo-500 hover:underline">
+                Sign up
+              </a>
+            </p>
+          </>
         )}
       </div>
-   </div>
+    </div>
   );
 };
 

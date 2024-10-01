@@ -1,4 +1,5 @@
 import "./App.css";
+import "./index.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import AllBlogs from "./pages/blog/AllBlogs";
