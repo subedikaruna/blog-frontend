@@ -8,7 +8,7 @@ const Register = () => {
   const handleRegister = async (data, resetForm) => {
     try {
       const response = await axios.post(
-        "https://blog-backend-vq9g.onrender.com//register",
+        "http://localhost:4000/register",
         data
       );
       if (response.status >= 200 && response.status < 300) {

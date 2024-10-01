@@ -9,7 +9,7 @@ const VerifyEmail = () => {
   let emailVerify = async () => {
     try {
       let result = await axios({
-        url: "https://blog-backend-vq9g.onrender.com//verify-email",
+        url: "http://localhost:4000/verify-email",
         method: "PATCH",
         headers: {
           Authorization: `Bearer ${token}`,

@@ -9,14 +9,14 @@ const MyProfile = () => {
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) {
-      alert("No token found! Please log in.");
-      navigate("/login"); // Redirect to login if no token
+      navigate("/login");
+      return; // Redirect to login if no token
     }
-  }, [navigate]);
+  }, []);
   const fetchProfile = async () => {
     try {
       const response = await axios({
-        url: "https://blog-backend-vq9g.onrender.com//my-profile",
+        url: "http://localhost:4000/my-profile",
         method: "get",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -26,9 +26,6 @@ const MyProfile = () => {
       setProfile(response.data.data);
     } catch (error) {}
   };
-  useEffect(() => {
-    fetchProfile();
-  }, []);
 
   return (
     <div className="bg-white max-w-2xl mx-auto mt-10 p-6 shadow-lg rounded-lg overflow-hidden">

@@ -4,26 +4,25 @@ import { useNavigate } from "react-router-dom";
 
 const Form = ({ type }) => {
   const navigate = useNavigate();
+  const token = localStorage.getItem("token");
   const [title, setTitle] = useState("");
   const [image, setImage] = useState("");
   const [description, setDescription] = useState("");
 
+  // Effect hook to trigger blog creation
   useEffect(() => {
-    const token = localStorage.getItem("token");
     if (!token) {
-      alert("No token found! Please log in.");
       navigate("/login"); // Redirect to login if no token
+      return;
     }
-  }, [navigate]);
+  }, []);
 
-  const createBlog = async (e) => {
-    e.preventDefault();
-    const token = localStorage.getItem("token");
-
+  // Function to create a new blog post
+  const createBlog = async () => {
     const data = {
-      title: title,
+      title,
       avatar: image,
-      description: description,
+      description,
     };
 
     try {
@@ -33,11 +32,12 @@ const Form = ({ type }) => {
         data: data,
         headers: {
           Authorization: `Bearer ${token}`,
+          "Content-Type": "multipart/form-data",
         },
       });
 
       if (response.status === 200) {
-        navigate("/"); // Redirect to home if blog is created
+        navigate("/"); // Redirect to home if blog is created successfully
       } else {
         alert("Something went wrong");
       }
@@ -54,7 +54,15 @@ const Form = ({ type }) => {
           {type}
         </h2>
 
-        <form onSubmit={createBlog} method="post">
+        {/* Form for creating a new blog post */}
+        <form
+          onSubmit={(e) => {
+            e.preventDefault(); // Prevent default form submission
+            createBlog(); // Trigger blog creation
+          }}
+          method="post"
+        >
+          {/* Title input */}
           <div className="mb-6">
             <label
               htmlFor="title"
@@ -73,6 +81,7 @@ const Form = ({ type }) => {
             />
           </div>
 
+          {/* Image upload */}
           <div className="mb-6">
             <label
               htmlFor="image"
@@ -81,15 +90,16 @@ const Form = ({ type }) => {
               Upload Image
             </label>
             <input
-              type="text"
+              type="file"
               id="image"
               name="image"
               className="w-full px-4 py-2 border border-gray-300 rounded-md"
               required
-              onChange={(e) => setImage(e.target.value)}
+              onChange={(e) => setImage(e.target.files[0])}
             />
           </div>
 
+          {/* Description textarea */}
           <div className="mb-6">
             <label
               htmlFor="description"
@@ -108,6 +118,7 @@ const Form = ({ type }) => {
             ></textarea>
           </div>
 
+          {/* Submit button */}
           <div className="text-center">
             <button
               type="submit"

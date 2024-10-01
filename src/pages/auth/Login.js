@@ -9,19 +9,13 @@ const Login = () => {
   const navigate = useNavigate();
   const handleLogin = async (data) => {
     try {
-      const response = await axios.post(
-        "https://blog-backend-vq9g.onrender.com//login",
-        data
-      );
+      const response = await axios.post("http://localhost:4000/login", data);
       let token = response.data.token;
-      console.log("Token from response:", token);
+      //console.log("Token from response:", token);
       localStorage.setItem("token", token);
+      //console.log(token);
 
-      if (response.status === 200) {
-        navigate("/my-profile");
-      } else {
-        toast.error("login failed");
-      }
+      navigate("/");
     } catch (error) {
       toast.error(error?.response?.data?.message);
     }

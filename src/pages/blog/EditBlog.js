@@ -7,13 +7,13 @@ import { ToastContainer, toast } from "react-toastify";
 const EditBlog = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-
+  const token = localStorage.getItem("token");
   // Redirect if no token is found
   useEffect(() => {
-    const token = localStorage.getItem("token");
     if (!token) {
       toast.error("No token found! Please log in.");
       navigate("/login");
+      return;
     }
   }, []);
 
@@ -28,11 +28,11 @@ const EditBlog = () => {
   const fetchBlog = async () => {
     try {
       if (id) {
-        const response = await axios.get(
-          `https://blog-backend-vq9g.onrender.com/blog/${id}`
-        );
+        const response = await axios.get(`http://localhost:4000/blog/${id}`);
         if (response.status === 200) {
-          setBlog(response.data.data);
+          const item = response.data.data;
+
+          setBlog(item);
         } else {
           toast.error("Failed to fetch blog data.");
         }
@@ -46,29 +46,24 @@ const EditBlog = () => {
   // Update blog post
   const editBlog = async (e) => {
     e.preventDefault();
-    const token = localStorage.getItem("token");
-    try {
-      if (id) {
-        const response = await axios.patch(
-          `https://blog-backend-vq9g.onrender.com/blog/${id}`,
-          blog, // Send the updated blog data
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
 
-        if (response.status === 200) {
-          toast.success("Blog updated successfully!");
-          navigate("/");
-        } else {
-          toast.error("Failed to update blog.");
-        }
+    const response = await axios.patch(
+      `http://localhost:4000/blog/${id}`,
+      blog, // Send the updated blog data
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
       }
-    } catch (error) {
-      console.error(error);
-      toast.error("An error occurred while updating the blog.");
+    );
+
+    if (response.status === 200) {
+      toast.success("Blog updated successfully!");
+
+      // navigate(`/${blog._id}`);
+    } else {
+      toast.error("Failed to update blog.");
     }
   };
 
@@ -116,7 +111,7 @@ const EditBlog = () => {
               <input
                 type="text"
                 id="image"
-                name="image"
+                name="avatar"
                 onChange={(e) => setBlog({ ...blog, avatar: e.target.value })}
                 value={blog.avatar || ""}
                 className="w-full px-4 py-2 border border-gray-300 rounded-md"

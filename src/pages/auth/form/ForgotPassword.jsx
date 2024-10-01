@@ -14,7 +14,7 @@ const ForgotPassword = () => {
 
     try {
       const response = await axios({
-        url: "https://blog-backend-vq9g.onrender.com//forgot-password",
+        url: "http://localhost:4000/forgot-password",
         method: "post",
 
         data,

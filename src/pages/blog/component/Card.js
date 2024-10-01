@@ -8,9 +8,7 @@ const Card = () => {
 
   const fetchBlogs = async () => {
     try {
-      const response = await axios.get(
-        "https://blog-backend-vq9g.onrender.com/blog"
-      );
+      const response = await axios.get("http://localhost:4000/blog");
       if (response.status === 200) {
         setBlogs(response.data.data);
       }
@@ -40,7 +38,7 @@ const Card = () => {
                 <img
                   className="w-full  object-cover"
                   style={{ height: "20rem" }}
-                  src={blog.avatar}
+                  src={"http://localhost:4000/"+blog.avatar}
                   alt={blog.title}
                 />
                 <div className="p-6">

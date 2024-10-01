@@ -15,7 +15,7 @@ const ResetPassword = () => {
     };
     try {
       let response = await axios({
-        url: "https://blog-backend-vq9g.onrender.com//reset-password",
+        url: "http://localhost:4000/reset-password",
         method: "PATCH",
         data: data,
         headers: {

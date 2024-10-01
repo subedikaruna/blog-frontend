@@ -17,9 +17,7 @@ import UpdateProfile from "./pages/auth/form/UpdateProfile";
 import UpdatePassword from "./pages/auth/form/UpdatePassword";
 import ForgotPassword from "./pages/auth/form/ForgotPassword.jsx";
 import ResetPassword from "./pages/auth/form/ResetPassword.jsx";
-
-
-
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   return (
@@ -40,8 +38,8 @@ function App() {
           <Route path="/register" element={<Register></Register>} />
           <Route path="/verify-email" element={<VerifyEmail></VerifyEmail>} />
           <Route path="/update-password" element={<UpdatePassword />} />
-          <Route path="/forgot-password" element={<ForgotPassword/>} />
-          <Route path="/reset-password" element={<ResetPassword/>} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/reset-password" element={<ResetPassword />} />
         </Routes>
       </BrowserRouter>
     </Provider>

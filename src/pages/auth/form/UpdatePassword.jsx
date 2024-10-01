@@ -24,7 +24,7 @@ const UpdatePassword = () => {
 
     try {
       const response = await axios({
-        url: "https://blog-backend-vq9g.onrender.com//update-password",
+        url: "http://localhost:4000/update-password",
         method: "patch",
         headers: {
           Authorization: `Bearer ${token}`,
