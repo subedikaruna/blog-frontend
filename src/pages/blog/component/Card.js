@@ -8,7 +8,7 @@ const Card = () => {
 
   const fetchBlogs = async () => {
     try {
-      const response = await axios.get("https://blog-backend-vq9g.onrender.com/blog");
+      const response = await axios.get("http://localhost:4000/blog");
       if (response.status === 200) {
         setBlogs(response.data.data);
       }
